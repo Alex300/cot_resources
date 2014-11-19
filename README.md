@@ -14,15 +14,16 @@ cot_resources
 
 Например старый код:
 
-cot_rc_add_file($cfg['themes_dir'].'/p30-avto/css/bootstrap.min.css');
+`cot_rc_add_file($cfg['themes_dir'].'/p30-avto/css/bootstrap.min.css');`
 
 привязан к конкретному файлу.  Кроме того плагины не могут контролировать был ли подключен скрипт или нет. А если мне в теме нужна другая версия этого файла?
 
 Новый код:
 
+`
 Resources::addFile('@bootstrap');  // Это в общем случае
 Resources::addFile(Resources::bootstrap); // Бутсрап часто используется. Константа не позволит ошибиться с подключением.
-
+`
 В данном случае скрипт бутсрапа связан с алиясом, который можно переназначить в процессе выполнения скрипта.
 
 В браузер уйдет тот, что назначен поледним (тот, что в Вашей теме). Если переназначения не приводилось, то по-умолчанию
@@ -34,15 +35,15 @@ Resources::setAlias('@bootstrap.theme.css', 'lib/bootstrap/css/bootstrap-theme.m
 Часто внешние скрипты содержат как JS, так и CSS файлы. Самые нужные скрипты имеют возможность загрузить все необходимое одной командой:
 
 Сравните:
-
+`
 cot_rc_add_file($cfg['themes_dir'].'/p30-avto/css/bootstrap.min.css');
 cot_rc_add_file($cfg['themes_dir'].'/p30-avto/css/bootstrap-theme.min.css', 'global');
 cot_rc_add_file("{$cfg['themes_dir']}/p30-avto/js/bootstrap.min.js", 'global');
-
+`
 и
-
+`
 Resources::addFile(Resources::bootstrap);
-
+`
 3) Контроль двойного подключения.
 
 Скрипт не даст дважды подключить один и тот же файл.
@@ -53,9 +54,9 @@ Resources::addFile(Resources::bootstrap);
 
 Все сталкивались с такой проблемой. Обновили скрипт, а пользователи получают версию из кеша браузера. 
 Проблема решается пердачей Get параметра вместе с именем файла:
-	
+`	
 Resources::linkFile('path/to/file.js?no_cache=1')
-
+`
  
 5) Защищенность.
 
