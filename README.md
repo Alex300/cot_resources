@@ -24,7 +24,10 @@ cot_rc_add_file($cfg['themes_dir'].'/p30-avto/css/bootstrap.min.css');
 
 `
 Resources::addFile('@bootstrap');  // Это в общем случае
-Resources::addFile(Resources::bootstrap); // Бутсрап часто используется. Константа не позволит ошибиться с подключением.
+
+// Бутсрап часто используется. Константа не позволит ошибиться с подключением.
+
+Resources::addFile(Resources::bootstrap); 
 `
 
 В данном случае скрипт бутсрапа связан с алиясом, который можно переназначить в процессе выполнения скрипта.
